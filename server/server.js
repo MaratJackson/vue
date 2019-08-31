@@ -19,7 +19,7 @@ app.get("/register", urlencodedParser, function (request, response) {
 app.post("/register", urlencodedParser, function (request, response) {
     if(!request.body) return response.sendStatus(400);
     console.log(request.body);
-    response.send(`${request.body.name} - ${request.body.age}`);
+    response.send(`Данные отправлены на сервер: ${JSON.stringify(request.body)}`);
 });
 
 
