@@ -14,56 +14,57 @@ new Vue({
       fio:null,
       email:null,
       phone:null,
-      osPhone: null
+      osPhone: null,
+      isActive:false
     },
     methods: {
       checkForm: function (e) {
-
+  
         this.errors = []
-
+        this.isActive = true
         if (!this.fio) {
-          this.errors.push('Укажите ФИО.');
+          this.errors[0] = 'Укажите ФИО'
         } else if (!this.checkInputs(this.fio,'fio')) {
-          this.errors.push('Укажите корректный ФИО')
+          this.errors[0] = 'Укажите корректный ФИО'
         }
 
         if (!this.email) {
-          this.errors.push('Укажите email.');
+          this.errors[1] = 'Укажите email'
         } else if (!this.checkInputs(this.email,'email')) {
-          this.errors.push('Укажите корректный email')
+          this.errors[1] = 'Укажите корректный email'
         }
 
         if (!this.phone) {
-          this.errors.push('Укажите телефон.');
+          this.errors[2] = 'Укажите телефон'
         } else if (!this.checkInputs(this.phone,'phone')) {
-          this.errors.push('Укажите корректный телефон')
-        }
-
-        if (!document.getElementById('city').value) {
-          this.errors.push('Укажите город.');
-        } else if (!this.checkInputs(document.getElementById('city').value,'city')) {
-          this.errors.push('Укажите корректно город')
+          this.errors[2] = 'Укажите корректный телефон'
         }
 
         if (!document.getElementById('country').value) {
-          this.errors.push('Укажите страну.');
+          this.errors[3] = 'Укажите страну'
         } else if (!this.checkInputs(document.getElementById('country').value,'country')) {
-          this.errors.push('Укажите корректную страну')
+          this.errors[3] = 'Укажите корректную страну'
+        }
+
+        if (!document.getElementById('city').value) {
+          this.errors[4] = 'Укажите город'
+        } else if (!this.checkInputs(document.getElementById('city').value,'city')) {
+          this.errors[4] = 'Укажите корректно город'
         }
 
         if (!this.osPhone) {
-          this.errors.push('Укажите ОС телефона.');
+          this.errors[5] = 'Укажите ОС телефона'
         }
 
-
         if (!this.errors.length) {
+          alert('dfdf')
           return true;
         }
 
         e.preventDefault();
       },
 
-      checkInputs: function(value, nameInput, country) {
+      checkInputs: function(value, nameInput) {
 
          if (nameInput === 'fio') {
             var regExp = /^[А-ЯЁ][а-яё]+ [А-ЯЁ][а-яё]+ [А-ЯЁ][а-яё]+$/
@@ -77,7 +78,7 @@ new Vue({
             var regExp = /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/
          }
 
-         if (nameInput === 'country' || nameInput === 'country') {
+         if (nameInput === 'country' || nameInput === 'city') {
             var regExp = /^[А-Яа-я]+(?:[\s-][А-Яа-я]+)*$/
          }
 
