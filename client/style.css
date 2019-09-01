@@ -132,6 +132,12 @@ label {
    .modal-container {
      width:500px !important;
    }
+
+   #confirm-sms-btn {
+     font-size: 51px !important;
+     height: 100px !important;
+     width: 200px !important;
+   }
 }
 
 .showError {
