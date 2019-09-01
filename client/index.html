@@ -1,116 +1,86 @@
 <!DOCTYPE html>
+
 <head>
-   <title>Test project</title>
-   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-   <script src="index.js"></script>
-   <script src="https://unpkg.com/@trevoreyre/autocomplete-js"></script>
-   <link rel="stylesheet" href="https://unpkg.com/@trevoreyre/autocomplete-js/dist/style.css">
-   <link rel="stylesheet" type="text/css" href="style.css">
-   <meta http-equiv="Content-Type" charset="utf-8">
+    <title>Вход</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="index.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta http-equiv="Content-Type" charset="utf-8">
 </head>
+
 <body>
- <h1><span>Web</span> App</h1>
- <div class='registration-inputs'>
-<form
-  id="form-reg"
-  @submit="checkForm"
-  action="/register"
-  method="post"
->
-    <b class='reg-profile-text'>Регистрация профиля</b>
-    <p>
-    <label for="fio">ФИО</label>
-    <br>
-    <input
-      placeholder="Иванов Иван Иванович"
-      id="fio"
-      v-model="fio"
-      type="text"
-      name="fio"
-      class="input-reg"
-    >
-      <div class='error-msg' v-bind:class='{showError:isActive}'>{{ errors[0] }}</div>
-  </p>
+    <h1><span>Web</span> App</h1>
+    <div class='registration-inputs'>
+        <form id="form-login" @submit="checkSmsCode" action="/register" method="post">
+            <b class='reg-profile-text'>Войти в свой профиль</b>
+            <p>
+                <label for="login">Логин</label>
+                <br>
+                <input 
+                  placeholder="Иванов Иван Иванович" 
+                  id="login"
+                  v-model="login" 
+                  type="text" 
+                  name="login" 
+                  class="input-reg">
+                <div class='error-msg' v-bind:class='{showError:isActive}'>{{ errors[0] }}</div>
+            </p>
 
-    <p>
-    <label for="email">Email</label>
-    <br>
-    <input
-      placeholder="example@ex.ru"
-      id="email"
-      v-model="email"
-      type="email"
-      name="email"
-      class="input-reg"      
-    >
-      <div class='error-msg' v-bind:class='{showError:isActive}'>{{ errors[1] }}</div>
-  </p>
+            <p>
+                <label for="password">Пароль</label>
+                <br>
+                <input 
+                  placeholder="9999" 
+                  id="password" 
+                  v-model="password" 
+                  type="text" 
+                  name="password" 
+                  class="input-reg">
+                <div class='error-msg' v-bind:class='{showError:isActive}'>{{ errors[1] }}</div>
+            </p>
 
-   <p>
-    <label for="phone">Телефон</label>
-    <br>
-    <input
-      placeholder="Номер мобильного телефона"
-      id="phone"
-      v-model="phone"
-      type="tel"
-      name="phone"
-      class="input-reg"      
-    >
-    <div class='error-msg' v-bind:class='{showError:isActive}'>{{ errors[2] }}</div>
-  </p>
+            <p>
+                <button type="button" value="Отправить" class="reg-btn" @click="checkInputs">ВОЙТИ</button>
+            </p>
+            <a href="http://localhost:3000/regProfile.html">Регистрация</a>
+            <div class='modalHide' v-bind:class='{modalShow:showModal}'>
+                <transition name="modal">
+                    <div class="modal-mask">
+                        <div class="modal-wrapper">
+                            <div class="modal-container">
+                              <span v-on:click="showModal=false" class="closebtn">×</span>
+                                <p class='center'>
+                                    <label for="sms">Пароль в SMS:{{randomNumber}}</label>
+                                    <br>
+                                    <input 
+                                      placeholder="9999" 
+                                      id="sms"
+                                      v-model="sms" 
+                                      type="text" 
+                                      name="sms" 
+                                      class="input-reg"
+                                      maxlength="4" 
+                                      >
+                                    <div class='center'>
+                                    <div class='error-msg' 
+                                       v-bind:class='{showError:isActive}' 
+                                       class ='center'>{{ errors[3] }}
+                                     </div>
+                                   </div>  
+                                </p>
+                                <div class='center'>
+                                  <button type="submit" id='confirm-sms-btn'>OK</button>
+                                </div>
+                                </slot>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            </transition>
+    </div>
+    </form>
+    </script>
 
-    <label for="country">Страна</label>
-     <div id="autocompleteCountry" class="autocomplete">
-       <input class=""
-         placeholder="Россия"
-         aria-label="Search for a country"
-         id = 'country'
-         name = 'country'
-         type='text'
-            >
-     <ul class="autocomplete-result-list"></ul>
-     </div>
-     <br>
-     <div class='error-msg' v-bind:class='{showError:isActive}'>{{ errors[3] }}</div>
-
-    <label for="city">Город</label>
-     <div id="autocompleteCity" class="autocomplete">
-       <input class=""
-         placeholder="Москва"
-         aria-label="Search for a city"
-         id = 'city'
-         name = 'city'
-         type ='text'
-        >
-     <ul class="autocomplete-result-list"></ul>
-     </div>
-     <br>
-     <div class='error-msg' v-bind:class='{showError:isActive}'>{{ errors[4] }}</div>
-
-    <p>
-    <label for="osPhone">ОС Телефона</label>
-    <br>
-    <select
-      id="osPhone"
-      v-model="osPhone"
-      name="osPhone"
-    >
-      <option>Android</option>
-      <option>IOS</option>
-    </select>
-    <div class='error-msg' v-bind:class='{showError:isActive}'>{{ errors[5] }}</div>
-  </p>
-
-  <p>
-    <button
-      type="submit"
-      value="Отправить"
-      class="reg-btn"
-    >Зарегистрироваться</button>
-  </p>
-</form>
-</div>
 </body>
 
 </html>

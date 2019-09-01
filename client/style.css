@@ -64,6 +64,10 @@ label {
   margin-left: 200px;	
 }
 
+#form-login {
+  margin-left: 200px; 
+}
+
 .registration-inputs {
   text-align: -webkit-left;
 }
@@ -78,6 +82,7 @@ label {
   position: relative;
   bottom:9px;
   display: none;
+  font-family: sans-serif;
 }
 
 @media screen and (min-width: 300px) and (max-width: 1025px){
@@ -88,6 +93,11 @@ label {
    #form-reg {
    	  margin: 0 auto !important;
    	  font-size: -webkit-xxx-large !important;
+   }
+
+   #form-login {
+      margin: 0 auto !important;
+      font-size: -webkit-xxx-large !important;
    }
 
    h1 {
@@ -113,8 +123,129 @@ label {
    	 height: 100px !important;
    	 font-size: 50px !important;
    }
+
+   #sms {
+     width:60% !important;
+     padding: 16px 38px 17px 79px !important;
+   }
+
+   .modal-container {
+     width:500px !important;
+   }
 }
 
 .showError {
   display: block;
+}
+
+a { 
+  text-decoration: none;
+  font-family: sans-serif;
+}
+
+.modalHide {
+  display: none;
+} 
+
+.modalShow {
+ display: block;
+}
+
+.modal-mask {
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .5);
+  display: table;
+  transition: opacity .3s ease;
+}
+
+.modal-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.modal-container {
+  width: 300px;
+  margin: 0px auto;
+  padding: 20px 30px;
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
+  transition: all .3s ease;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.modal-header h3 {
+  margin-top: 0;
+  color: #42b983;
+}
+
+.modal-body {
+  margin: 20px 0;
+}
+
+.modal-default-button {
+  float: right;
+}
+
+.modal-enter {
+  opacity: 0;
+}
+
+.modal-leave-active {
+  opacity: 0;
+}
+
+.modal-enter .modal-container,
+.modal-leave-active .modal-container {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+.center {
+   text-align: center !important;
+}
+
+#sms {
+  width:40%;
+  padding: 16px 38px 17px 39px;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: grey;
+  font-weight: bold;
+  float: right;
+  font-size: 26px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-left: 0px;
+}
+
+#confirm-sms-btn{
+  outline: 0;
+  outline-offset: 0;
+  font-family: 'Ubuntu', sans-serif;
+  background: linear-gradient(90deg, #d162ff 31%,#cc43ae 82%);
+  color: white;
+  border: #3a76a3;
+  margin-right: 5px;
+  width: 150px;
+  margin-bottom: 15px;
+  border-radius: 2px;
+  font-size: 18px;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  transition: all 0.5s;
+  height: 40px;
+  border-radius: 30px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
 }
