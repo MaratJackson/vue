@@ -1,4 +1,7 @@
 
+Requirements:
+ Node.js
+ npm
 
 Start project:
 
