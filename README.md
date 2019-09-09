@@ -1,6 +1,6 @@
 
 Requirements:
- Node.js
+ Node.js,
  npm
 
 Start project:
